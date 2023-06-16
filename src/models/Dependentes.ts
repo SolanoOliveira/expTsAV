@@ -1,17 +1,27 @@
-import { Table, Model, Column, DataType, IsUUID, PrimaryKey, AllowNull, IsEmail, ForeignKey, BelongsTo, Default } from "sequelize-typescript";
-import { Funcionarios } from "./Funcionarios";
+import {
+  Table,
+  Model,
+  Column,
+  DataType,
+  IsUUID,
+  PrimaryKey,
+  AllowNull,
+  ForeignKey,
+  BelongsTo,
+} from 'sequelize-typescript';
+import { Funcionarios } from './Funcionarios';
 
 @Table({
   timestamps: true,
 })
 export class Dependentes extends Model {
   @IsUUID('all')
-	@PrimaryKey
-	@Column({
-		type: DataType.UUID,
-		defaultValue: DataType.UUIDV1,
-	})
-	id!: string;
+  @PrimaryKey
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV1,
+  })
+  id!: string;
 
   @AllowNull(false)
   @Column({
@@ -26,12 +36,12 @@ export class Dependentes extends Model {
   idade!: number;
 
   @ForeignKey(() => Funcionarios)
-	@AllowNull(false)
-	@Column({
-		type: DataType.UUID,
-	})
-	funcionarioId!: string;
+  @AllowNull(false)
+  @Column({
+    type: DataType.UUID,
+  })
+  funcionarioId!: string;
 
   @BelongsTo(() => Funcionarios)
-	Funcionario!: Funcionarios;
+  Funcionario!: Funcionarios;
 }
