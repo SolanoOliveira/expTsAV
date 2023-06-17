@@ -52,8 +52,6 @@ export class Api {
   }
 
   private async middleware() {
-    this.server.use(express.json());
-
     this.server.use(logger('completo'));
 
     this.server.use(

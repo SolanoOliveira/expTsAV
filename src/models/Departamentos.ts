@@ -9,10 +9,11 @@ import {
   Unique,
   ForeignKey,
   HasOne,
+  Length,
   HasMany,
 } from 'sequelize-typescript';
-import { Funcionarios } from './Funcionarios';
 import { Projetos } from './Projetos';
+import { Funcionarios } from './Funcionarios';
 
 @Table({
   timestamps: true,
@@ -26,6 +27,11 @@ export class Departamentos extends Model {
   })
   id!: string;
 
+  @Length({
+    min: 3,
+    max: 50,
+    msg: 'O nome precisa conter entre 3 e 50 caracteres',
+  })
   @AllowNull(false)
   @Unique
   @Column({
@@ -33,21 +39,15 @@ export class Departamentos extends Model {
   })
   name!: string;
 
+  @Length({ min: 2, max: 2, msg: 'A sigla precisa conter 2 caracteres' })
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
   })
   sigla!: string;
 
-  @ForeignKey(() => Funcionarios)
-  @AllowNull(true)
-  @Column({
-    type: DataType.UUID,
-  })
-  gestorId!: string;
-
-  @HasOne(() => Funcionarios, 'gestorId')
-  gestor!: Funcionarios;
+  @HasMany(() => Funcionarios)
+  departamentos!: Funcionarios[];
 
   @HasMany(() => Projetos)
   projetos!: Projetos[];
