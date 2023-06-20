@@ -8,6 +8,11 @@ const router = Router();
 router.get('/', mainController.index);
 router.get('/about', mainController.about);
 router.get('/ui', mainController.ui);
+router.get('/create-cookie', mainController.createCookie);
+router.get('/clear-cookie', mainController.clearCookie);
+router.get('/login', mainController.login);
+router.post('/login', mainController.login);
+router.get('/logout', mainController.logout);
 
 //Departamento controller
 

@@ -1,0 +1,24 @@
+<div class="col-lg-12">
+    <div class="page-header">
+        <h1 id="tables">Acesso de Usuário</h1>
+    </div>
+
+    <div class="bs-component col-8">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label class="col-form-label mt-2" for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value='{{username}}'>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label mt-2" for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" value='{{senha}}'>
+                {{#if senhaIncorreta}}
+                <div class="invalid-feedback" style="display:block">Usuário ou senha incorretos</div>
+                {{/if}}
+            </div>
+            <div class="form-group  mt-4">
+                <button type="submit" class="btn btn-primary">Acessar</button>
+            </div>
+        </form>
+    </div><!-- /example -->
+</div>
