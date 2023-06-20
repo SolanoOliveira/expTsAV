@@ -42,6 +42,9 @@ const login = (req: Request, res: Response) => {
     }
   }
 };
-const logout = (req: Request, res: Response) => {} ;
+const logout = (req: Request, res: Response) => {
+  res.clearCookie('logado');
+  res.redirect('/');
+} ;
 
 export default { index, about, ui, createCookie, clearCookie, login, logout };
