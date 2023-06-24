@@ -28,7 +28,9 @@ const clearCookie = function (req: Request, res: Response) {
 
 const login = (req: Request, res: Response) => {
   if(req.route.methods.get){
-    res.render('main/login');
+    res.render('main/login',{
+      csrf: req.csrfToken(),
+    });
   } else {
     const { username, senha} = req.body;
     if(username === 'user' && senha === '12345'){
@@ -38,7 +40,8 @@ const login = (req: Request, res: Response) => {
       res.render('main/login',{
       username,
       senha,
-      senhaIncorreta: true});
+      senhaIncorreta: true,
+      csrf: req.csrfToken(),});
     }
   }
 };

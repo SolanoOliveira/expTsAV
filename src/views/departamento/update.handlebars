@@ -16,6 +16,7 @@
                 <div class="invalid-feedback" style="display:block">{{showErrors erros 'sigla'}}</div>
             </div>
             <div class="form-group  mt-4">
+                <input type="hidden" name="_csrf" value="{{csrf}}">
                 <button type="submit" class="btn btn-primary">Adicionar</button>
             </div>
         </form>

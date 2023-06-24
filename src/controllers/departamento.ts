@@ -11,7 +11,9 @@ const index =  async (req: Request, res: Response) => {
 
 const create =  async (req: Request, res: Response) => {
     if (req.route.methods.get) {
-        res.render('departamento/create');
+        res.render('departamento/create',{
+            csrf: req.csrfToken(),
+        });
     }else{
         const departamento = req.body;
         try {
@@ -22,6 +24,7 @@ const create =  async (req: Request, res: Response) => {
             res.render('departamento/create',{
                 departamento,
                 erros: err.errors,
+                csrf: req.csrfToken(),
             });
         }
     }
@@ -33,7 +36,8 @@ const update =  async (req: Request, res: Response) => {
         const departamento = await Departamentos.findByPk(req.params.id);
         if(departamento){
             res.render('departamento/update',{
-                departamento: departamento.toJSON()
+                departamento: departamento.toJSON(),
+                csrf: req.csrfToken(),
             });
         }else{
             res.redirect('/departamento');
@@ -48,10 +52,21 @@ const update =  async (req: Request, res: Response) => {
             res.render('departamento/update',{
                 departamento,
                 erros: err.errors,
+                csrf: req.csrfToken(),
             });
         }
     }
 };
-const del =  async (req: Request, res: Response) => {};
+const del =  async (req: Request, res: Response) => {
+    const departamento = await Departamentos.findByPk(req.params.id);
+    if(departamento){
+        res.render('departamento/del',{
+            departamento: departamento.toJSON(),
+            csrf: req.csrfToken(),
+        });
+        await Departamentos.destroy(departamento.toJSON())
+    }
+    res.redirect('/departamento');
+};
 
 export default {index, create, read, update, del}
