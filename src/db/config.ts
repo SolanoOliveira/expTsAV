@@ -3,9 +3,9 @@ import { Sequelize } from 'sequelize-typescript';
 const connection = new Sequelize({
   dialect: 'mysql',
   host: 'localhost',
-  username: 'myuser',
-  password: '1234',
-  database: 'empresa',
+  username: 'webacademy',
+  password: 'Web@cad123',
+  database: 'funcionarios',
   logging: false,
 });
 
